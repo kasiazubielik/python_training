@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="813bd774-9d07-4c45-9272-9c586f6f3c6e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_add_address.py" afterPath="$PROJECT_DIR$/test_add_address.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_add_group.py" afterPath="$PROJECT_DIR$/test_add_group.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,21 +13,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_add_group.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_add_group.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_add_group.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-142">
-              <caret line="22" column="87" lean-forward="false" selection-start-line="22" selection-start-column="87" selection-end-line="22" selection-end-column="87" />
+            <state relative-caret-position="-55">
+              <caret line="54" column="35" lean-forward="false" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
               <folding>
                 <element signature="e#24#82#0" expanded="true" />
-                <element signature="e#880#926#0" expanded="false" />
-                <element signature="e#977#1027#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_add_address.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_add_address.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_add_address.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
@@ -89,8 +86,8 @@
         <option value="$PROJECT_DIR$/Group.py" />
         <option value="$PROJECT_DIR$/group.py" />
         <option value="$PROJECT_DIR$/address.py" />
-        <option value="$PROJECT_DIR$/test_add_group.py" />
         <option value="$PROJECT_DIR$/test_add_address.py" />
+        <option value="$PROJECT_DIR$/test_add_group.py" />
       </list>
     </option>
   </component>
@@ -148,7 +145,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.py.test in test_add_address.py">
+  <component name="RunManager" selected="Python tests.py.test in test_add_group.py">
     <configuration name="Group" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -219,8 +216,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.py.test in test_add_address.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test in test_add_group.py" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.py.test in test_add_group.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test in test_add_address.py" />
         <item index="2" class="java.lang.String" itemvalue="Python tests.py.test in python_training" />
       </list>
     </recent_temporary>
@@ -239,12 +236,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_in_test_add_address_py - 2017.11.01 at 16h 27m 43s.xml">
-      <configuration name="py.test in test_add_address.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_add_address_py - 2017.11.01 at 16h 28m 59s.xml">
-      <configuration name="py.test in test_add_address.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="py_test_in_test_add_address_py - 2017.11.01 at 16h 31m 12s.xml">
       <configuration name="py.test in test_add_address.py" configurationId="tests" />
     </history-entry>
@@ -267,6 +258,12 @@
       <configuration name="py.test in test_add_address.py" configurationId="tests" />
     </history-entry>
     <history-entry file="py_test_in_test_add_group_py - 2017.11.05 at 22h 06m 52s.xml">
+      <configuration name="py.test in test_add_group.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_add_group_py - 2017.11.05 at 23h 13m 54s.xml">
+      <configuration name="py.test in test_add_group.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_add_group_py - 2017.11.05 at 23h 16m 22s.xml">
       <configuration name="py.test in test_add_group.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -316,7 +313,7 @@
           <line>37</line>
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -327,8 +324,6 @@
           <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
           <folding>
             <element signature="e#24#82#0" expanded="true" />
-            <element signature="e#880#926#0" expanded="false" />
-            <element signature="e#977#1027#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -354,8 +349,6 @@
           <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
           <folding>
             <element signature="e#24#82#0" expanded="true" />
-            <element signature="e#880#926#0" expanded="false" />
-            <element signature="e#977#1027#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -373,8 +366,6 @@
           <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding>
             <element signature="e#24#82#0" expanded="true" />
-            <element signature="e#880#926#0" expanded="false" />
-            <element signature="e#977#1027#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -394,8 +385,6 @@
           <caret line="1" column="31" lean-forward="false" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
           <folding>
             <element signature="e#24#82#0" expanded="true" />
-            <element signature="e#880#926#0" expanded="false" />
-            <element signature="e#977#1027#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -421,8 +410,6 @@
           <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
           <folding>
             <element signature="e#24#82#0" expanded="true" />
-            <element signature="e#880#926#0" expanded="false" />
-            <element signature="e#977#1027#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -440,8 +427,6 @@
           <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding>
             <element signature="e#24#82#0" expanded="true" />
-            <element signature="e#880#926#0" expanded="false" />
-            <element signature="e#977#1027#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -471,22 +456,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_add_group.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-142">
-          <caret line="22" column="87" lean-forward="false" selection-start-line="22" selection-start-column="87" selection-end-line="22" selection-end-column="87" />
-          <folding>
-            <element signature="e#24#82#0" expanded="true" />
-            <element signature="e#880#926#0" expanded="false" />
-            <element signature="e#977#1027#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_add_address.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+          <folding>
+            <element signature="e#24#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_add_group.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-55">
+          <caret line="54" column="35" lean-forward="false" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
           <folding>
             <element signature="e#24#82#0" expanded="true" />
           </folding>
