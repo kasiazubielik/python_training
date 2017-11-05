@@ -17,7 +17,6 @@ class test_add_address(unittest.TestCase):
     
     def test_add_address(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.create_address(wd, Address(firstname="Jan", middlename="P.", lastname="Kowalski", nickname="none", title="Mr.", company="none", address="ul. Polna 3 00-123 Warszawa",
                             home_phone="+22 0987867", mobile_phone="+48 765890765", work_phone="+48 564389067", fax="none", email="jan.kowalski@mail.com",
@@ -27,15 +26,9 @@ class test_add_address(unittest.TestCase):
 
     def test_add_empty_address(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.create_address(wd, Address(firstname="", middlename="", lastname="", nickname="", title="",
-                                  company="", address="",
-                                  home_phone="", mobile_phone="=", work_phone="",
-                                  fax="", email="",
-                                  email2="", email3="",
-                                  homepage="", birth_date="", address2="", notes="",
-                                  phone2=""))
+        self.create_address(wd, Address(firstname="", middlename="", lastname="", nickname="", title="", company="", address="", home_phone="", mobile_phone="=", work_phone="", fax="", email="",
+                                  email2="", email3="", homepage="", birth_date="", address2="", notes="", phone2=""))
         self.logout(wd)
 
     def logout(self, wd):
@@ -110,6 +103,7 @@ class test_add_address(unittest.TestCase):
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
