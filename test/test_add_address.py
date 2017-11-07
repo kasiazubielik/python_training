@@ -11,6 +11,7 @@ def test_add_address(app):
                                phone2="home"))
     app.session.logout()
 
+
 def test_add_empty_address(app):
     app.session.login(username="admin", password="secret")
     app.address.create(Address(firstname="", middlename="", lastname="", nickname="", title="", company="", address="", home_phone="", mobile_phone="=", work_phone="", fax="", email="",
