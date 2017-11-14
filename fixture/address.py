@@ -7,7 +7,8 @@ class AddressHelper:
 
     def open_address_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("searchstring")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def create(self, address):
         wd = self.app.wd
