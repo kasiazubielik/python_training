@@ -4,7 +4,7 @@ class Address:
 
     def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None, address=None, home_phone=None,
                        mobile_phone=None, work_phone=None, fax=None, email=None, email2=None, email3=None, homepage=None, birth_date=None, address2=None, notes=None,
-                       phone2=None):
+                       phone2=None, id=None):
         self.firstname = firstname
         self.middlename = middlename
         self.lastname = lastname
@@ -24,5 +24,4 @@ class Address:
         self.address2 = address2
         self.notes = notes
         self.phone2 = phone2
-
-
+        self.id = id

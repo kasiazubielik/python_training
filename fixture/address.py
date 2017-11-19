@@ -1,5 +1,8 @@
 
 
+from model.address import Address
+
+
 class AddressHelper:
 
     def __init__(self, app):
@@ -81,3 +84,15 @@ class AddressHelper:
         wd = self.app.wd
         self.open_address_page()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_address_list(self):
+        wd = self.app.wd
+        self.open_address_page()
+        addresses = []
+        for element in wd.find_elements_by_name("entry"):
+            cells = element.find_elements_by_tag_name("td")
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            lastname = cells[1].text
+            firstname = cells[2].text
+            addresses.append(Address(lastname=lastname, firstname=firstname, id=id))
+        return addresses
