@@ -10,3 +10,5 @@ def test_delete_first_address(app):
     app.address.delete_first_address()
     new_addresses = app.address.get_address_list()
     assert len(old_addresses) - 1 == len(new_addresses)
+    old_addresses[0:1] = []
+    assert old_addresses== new_addresses
