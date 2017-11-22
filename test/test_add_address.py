@@ -10,15 +10,15 @@ def test_add_address(app):
                                email2="jan.k@mymail.com", email3="j.kowalski.kowalski.com", homepage="www.jakowalski.com", birth_date="1981", address2="none", notes="none",
                                phone2="home")
     app.address.create(address)
+    assert len(old_addresses) + 1 == app.address.count()
     new_addresses = app.address.get_address_list()
-    assert len(old_addresses) + 1 == len(new_addresses)
     old_addresses.append(address)
     assert sorted(old_addresses, key=Address.id_or_max) == sorted(new_addresses, key=Address.id_or_max)
 
 
-def test_add_empty_address(app):
-    old_addresses = app.address.get_address_list()
-    app.address.create(Address(firstname="", middlename="", lastname="", nickname="", title="", company="", address="", home_phone="", mobile_phone="=", work_phone="", fax="", email="",
-                               email2="", email3="", homepage="", birth_date="", address2="", notes="", phone2=""))
-    new_addresses = app.address.get_address_list()
-    assert len(old_addresses) + 1 == len(new_addresses)
+# def test_add_empty_address(app):
+#     old_addresses = app.address.get_address_list()
+#     app.address.create(Address(firstname="", middlename="", lastname="", nickname="", title="", company="", address="", home_phone="", mobile_phone="=", work_phone="", fax="", email="",
+#                                email2="", email3="", homepage="", birth_date="", address2="", notes="", phone2=""))
+#     new_addresses = app.address.get_address_list()
+#     assert len(old_addresses) + 1 == len(new_addresses)

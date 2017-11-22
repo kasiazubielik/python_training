@@ -20,6 +20,7 @@ class AddressHelper:
         self.fill_address_form(address)
         # submit address creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.address_cache = None
 
     def fill_address_form(self, address):
         wd = self.app.wd
@@ -65,6 +66,7 @@ class AddressHelper:
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         # confirm deletion
         wd.switch_to_alert().accept()
+        self.address_cache = None
 
     def select_first_address(self):
         wd = self.app.wd
@@ -79,19 +81,24 @@ class AddressHelper:
         self.fill_address_form(new_adress_data)
         # submit address edition
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
+        self.address_cache = None
 
     def count(self):
         wd = self.app.wd
         self.open_address_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+    address_cache = None
+
     def get_address_list(self):
         wd = self.app.wd
-        self.open_address_page()
-        addresses = []
-        for element in wd.find_elements_by_name("entry"):
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            lastname = element.find_elements_by_css_selector("td")[1].text
-            firstname = element.find_elements_by_css_selector("td")[2].text
-            addresses.append(Address(id=id, firstname=firstname, lastname=lastname))
-        return addresses
+        if self.address_cache is None:
+            self.open_address_page()
+            self.address_cache = []
+            for element in wd.find_elements_by_name("entry"):
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                cells = element.find_elements_by_tag_name("td")
+                lastname = cells[1].text
+                firstname = cells[2].text
+                self.address_cache.append(Address(id=id, firstname=firstname, lastname=lastname))
+        return self.address_cache
