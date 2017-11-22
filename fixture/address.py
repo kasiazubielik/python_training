@@ -58,24 +58,34 @@ class AddressHelper:
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
-    def delete_first_address(self):
+    def delete_address_by_index(self, index):
         wd = self.app.wd
         self.open_address_page()
-        self.select_first_address()
+        self.select_address_by_index(index)
         # submit deletion
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         # confirm deletion
         wd.switch_to_alert().accept()
         self.address_cache = None
 
+    def delete_first_address(self):
+        self.delete_address_by_index(0)
+
+    def select_address_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
     def select_first_address(self):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
     def modify_first_address(self, new_adress_data):
+        self.modify_address_by_index(0)
+
+    def modify_address_by_index(self, index, new_adress_data):
         wd = self.app.wd
         self.open_address_page()
-        self.select_first_address()
+        self.select_address_by_index(index)
         # edit address form
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         self.fill_address_form(new_adress_data)
