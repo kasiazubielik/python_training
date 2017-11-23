@@ -73,11 +73,11 @@ class AddressHelper:
 
     def select_address_by_index(self, index):
         wd = self.app.wd
-        wd.find_elements_by_name("selected[]")[index].click()
+        wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr[index]/td[8]/a/img")
 
     def select_first_address(self):
         wd = self.app.wd
-        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")
 
     def modify_first_address(self, new_adress_data):
         self.modify_address_by_index(0)
