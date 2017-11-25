@@ -73,25 +73,23 @@ class AddressHelper:
 
     def select_address_by_index(self, index):
         wd = self.app.wd
-        wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr[index]/td[8]/a/img")
-
-    def select_first_address(self):
-        wd = self.app.wd
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")
-
-    def modify_first_address(self, new_adress_data):
-        self.modify_address_by_index(0)
+        wd.find_elements_by_name("selected[]")[index].click()
 
     def modify_address_by_index(self, index, new_adress_data):
         wd = self.app.wd
         self.open_address_page()
-        self.select_address_by_index(index)
-        # edit address form
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        self.choose_address_by_index(index)
         self.fill_address_form(new_adress_data)
         # submit address edition
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
         self.address_cache = None
+
+    def modify_first_address(self, new_adress_data):
+        self.modify_address_by_index(0)
+
+    def choose_address_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr/td[8]/a/img")[index].click()
 
     def count(self):
         wd = self.app.wd
