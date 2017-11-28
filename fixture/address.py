@@ -1,6 +1,7 @@
 
 
 from model.address import Address
+import re
 
 
 class AddressHelper:
@@ -75,16 +76,16 @@ class AddressHelper:
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
-    def modify_address_by_index(self, index, new_adress_data):
+    def modify_address_by_index(self, index, new_address_data):
         wd = self.app.wd
         self.open_address_page()
         self.choose_address_by_index(index)
-        self.fill_address_form(new_adress_data)
+        self.fill_address_form(new_address_data)
         # submit address edition
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
         self.address_cache = None
 
-    def modify_first_address(self, new_adress_data):
+    def modify_first_address(self):
         self.modify_address_by_index(0)
 
     def choose_address_by_index(self, index):
@@ -108,5 +109,47 @@ class AddressHelper:
                 cells = element.find_elements_by_tag_name("td")
                 lastname = cells[1].text
                 firstname = cells[2].text
-                self.address_cache.append(Address(id=id, firstname=firstname, lastname=lastname))
+                all_phones = cells[5].text.splitlines()
+                self.address_cache.append(Address(id=id, firstname=firstname, lastname=lastname,
+                                                  home_phone=all_phones[0], mobile_phone=all_phones[1],
+                                                  work_phone=all_phones[2], phone2=all_phones[3]))
         return self.address_cache
+
+    def open_address_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.open_address_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[7]
+        cell.find_element_by_tag_name("a").click()
+
+    def get_address_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_address_to_edit_by_index(index)
+        firstname = wd.find_element_by_name("firstname").get_attribute("value")
+        lastname = wd.find_element_by_name("lastname").get_attribute("value")
+        id = wd.find_element_by_name("id").get_attribute("value")
+        home_phone = wd.find_element_by_name("home").get_attribute("value")
+        mobile_phone = wd.find_element_by_name("mobile").get_attribute("value")
+        work_phone = wd.find_element_by_name("work").get_attribute("value")
+        phone2 = wd.find_element_by_name("phone2").get_attribute("value")
+        return Address(firstname=firstname, lastname=lastname, id=id,
+                       home_phone=home_phone, mobile_phone=mobile_phone,
+                       work_phone=work_phone, phone2=phone2)
+
+    def open_address_view_by_index(self, index):
+        wd = self.app.wd
+        self.open_address_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[6]
+        cell.find_element_by_tag_name("a").click()
+
+    def get_address_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_address_view_by_index(index)
+        text = wd.find_element_by_id("content").text
+        home_phone = re.search("H: (.*)", text).group(1)
+        mobile_phone = re.search("M: (.*)", text).group(1)
+        work_phone = re.search("W: (.*)", text).group(1)
+        phone2 = re.search("P: (.*)", text).group(1)
+        return Address(home_phone=home_phone, mobile_phone=mobile_phone,
+                       work_phone=work_phone, phone2=phone2)
