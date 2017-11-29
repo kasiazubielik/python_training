@@ -1,14 +1,32 @@
 # -*- coding: utf-8 -*-
 
 from model.contact import Contact
+import pytest
+import random
+import string
 
-    
-def test_add_contact(app):
+
+def random_string(prefix, maxlen):
+    symbols = string.ascii_letters + string.digits + " "*10
+    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
+
+
+
+testdata = [Contact(firstname="", lastname="", address="",
+                    home_phone="", mobile_phone="=", work_phone="",
+                    email="", email2="", email3="", phone2="")] + [
+            Contact(firstname=random_string("firstname", 10), lastname=random_string("lastname", 10), address=random_string("address", 10),
+                               home_phone=random_string("home_phone", 10), mobile_phone=random_string("mobile_phone", 10),
+                               work_phone=random_string("work_phone", 10), email=random_string("email", 10) + '@' + random_string("", 10),
+                               email2=random_string("email2", 10) + '@' + random_string("", 10), email3=random_string("email3", 10) + '@' + random_string("", 10),
+                               phone2=random_string("phone2", 10))
+            for i in range(5)
+            ]
+
+
+@pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
+def test_add_contact(app, contact):
     old_contacts = app.contact.get_contact_list()
-    contact = Contact(firstname="Jan", middlename="P.", lastname="Kowalski", nickname="none", title="Mr.", company="none", address="ul. Polna 3 00-123 Warszawa",
-                               home_phone="+22 0987867", mobile_phone="+48 765890765", work_phone="+48 564389067", fax="none", email="jan.kowalski@mail.com",
-                               email2="jan.k@mymail.com", email3="j.kowalski.kowalski.com", homepage="www.jakowalski.com", birth_date="1981", address2="none", notes="none",
-                               phone2="(22)670-85-33")
     app.contact.create(contact)
     assert len(old_contacts) + 1 == app.contact.count()
     new_contacts = app.contact.get_contact_list()
@@ -16,10 +34,3 @@ def test_add_contact(app):
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
 
 
-
-# def test_add_empty_contact(app):
-#     old_contacts = app.contact.get_contact_list()
-#     app.contact.create(Contact(firstname="", middlename="", lastname="", nickname="", title="", company="", address="", home_phone="", mobile_phone="=", work_phone="", fax="", email="",
-#                                email2="", email3="", homepage="", birth_date="", address2="", notes="", phone2=""))
-#     new_contacts = app.contact.get_contact_list()
-#     assert len(old_contacts) + 1 == len(new_contacts)
