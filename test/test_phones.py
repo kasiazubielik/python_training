@@ -2,20 +2,23 @@
 import re
 
 def test_phones_on_home_page(app):
-    address_from_home_page = app.address.get_address_list()[0]
-    address_from_edit_page = app.address.get_address_info_from_edit_page(0)
-    assert address_from_home_page.home_phone == clear(address_from_edit_page.home_phone)
-    assert address_from_home_page.mobile_phone == clear(address_from_edit_page.mobile_phone)
-    assert address_from_home_page.work_phone == clear(address_from_edit_page.work_phone)
-    assert address_from_home_page.phone2 == clear(address_from_edit_page.phone2)
+    contact_from_home_page = app.address.get_contact_list()[0]
+    contact_from_edit_page = app.address.get_contact_info_from_edit_page(0)
+    assert contact_from_home_page.all_phones_from_home_page == merge_phones_like_home_page(contact_from_edit_page)
 
 def test_phones_on_contact_view_paga(app):
-    address_from_view_page = app.address.get_address_from_view_page(0)
-    address_from_edit_page = app.address.get_address_info_from_edit_page(0)
-    assert address_from_view_page.home_phone == address_from_edit_page.home_phone
-    assert address_from_view_page.mobile_phone == address_from_edit_page.mobile_phone
-    assert address_from_view_page.work_phone == address_from_edit_page.work_phone
-    assert address_from_view_page.phone2 == address_from_edit_page.phone2
+    contact_from_view_page = app.address.get_contact_from_view_page(0)
+    contact_from_edit_page = app.address.get_contact_info_from_edit_page(0)
+    assert contact_from_view_page.home_phone == contact_from_edit_page.home_phone
+    assert contact_from_view_page.mobile_phone == contact_from_edit_page.mobile_phone
+    assert contact_from_view_page.work_phone == contact_from_edit_page.work_phone
+    assert contact_from_view_page.phone2 == contact_from_edit_page.phone2
 
 def clear(s):
     return re.sub("[() +-]", "", s)
+
+def merge_phones_like_home_page(contact):
+    return "\n".join(filter(lambda x: x != "",
+                            map(lambda x: clear(x),
+                                filter(lambda x: x is not None,
+                                       [contact.home_phone, contact.mobile_phone, contact.work_phone, contact.phone2]))))
