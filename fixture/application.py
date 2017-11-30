@@ -13,24 +13,24 @@ class Application:
         except:
             return False
 
-    def __init__(self, browser="firefox"):
+    def __init__(self, browser, base_url):
         if browser == "firefox":
             self.wd = webdriver.Firefox(capabilities={"marionette": False})
-        if browser == "chrome":
+        elif browser == "chrome":
             self.wd = webdriver.Chrome()
-        if browser == "ie":
+        elif browser == "ie":
             self.wd = webdriver.Ie()
         else:
             raise ValueError("Unrecognised browser %s" % browser)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
+        self.base_url = base_url
 
     def destroy(self):
         self.wd.quit()
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/group.php")
-
+        wd.get("http://localhost/addressbook/")
 
