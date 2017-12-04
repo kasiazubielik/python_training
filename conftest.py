@@ -1,4 +1,3 @@
-
 import pytest
 import json
 import os.path
@@ -19,7 +18,7 @@ def app(request):
             target = json.load(f)
     if fixture is None or not fixture.is_valid():
         fixture = Application(browser=browser, base_url=target["baseUrl"])
-    fixture.session.login(username=target["username"], password=target["password"])
+    fixture.session.ensure_login(username=target["username"], password=target["password"])
     return fixture
 
 
