@@ -2,7 +2,7 @@ from model.group import Group
 import random
 import string
 import os.path
-import json
+import jsonpickle
 import getopt
 import sys
 
@@ -14,7 +14,7 @@ except getopt.GetoptError as err:
     getopt.usage()
     sys.exit(2)
 
-n = 5
+n = 3
 f = "data/groups.json"
 
 for o, a in opts:
@@ -37,7 +37,9 @@ testdata = [Group(name="", header="", footer="")] + [
 file = config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", f)
 
 with open(file, "w") as out:
-    out.write(json.dumps(testdata, default=lambda x: x.__dict__, indent=2))
+    # out.write(json.dumps(testdata, default=lambda x: x.__dict__, indent=2))
+    jsonpickle.set_encoder_options("json", indent = 2)
+    out.write(jsonpickle.encode(testdata))
 
 # "dump" changes data sturcture into a json string
 # __dict__ keeps the same properties that are assigned to the __init__ method in model.group
