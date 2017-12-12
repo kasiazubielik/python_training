@@ -69,6 +69,16 @@ class ContactHelper:
         wd.switch_to_alert().accept()
         self.contact_cache = None
 
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        self.open_contact_page()
+        self.select_contact_by_id(id)
+        # submit deletion
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+        # confirm deletion
+        wd.switch_to_alert().accept()
+        self.contact_cache = None
+
     def delete_first_contact(self):
         self.delete_contact_by_index(0)
 
@@ -76,10 +86,29 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        checkbox = wd.find_element_by_css_selector("input[value='%s']" % id)
+        checkbox.click()
+        return checkbox
+
     def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.open_contact_page()
         self.choose_contact_by_index(index)
+        self.fill_contact_form(new_contact_data)
+        # submit contact edition
+        wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
+        self.contact_cache = None
+
+    def modify_contact_by_id(self, id, new_contact_data):
+        wd = self.app.wd
+        self.open_contact_page()
+        checkbox = self.select_contact_by_id(id)
+        row = checkbox.find_element_by_xpath("./../..")
+        cell = row.find_elements_by_tag_name("td")[7]
+        cell.find_element_by_tag_name("a").click()
+        # self.choose_contact_by_id(id)
         self.fill_contact_form(new_contact_data)
         # submit contact edition
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
@@ -91,6 +120,12 @@ class ContactHelper:
     def choose_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr/td[8]/a/img")[index].click()
+
+    def choose_contact_by_id(self, id):
+        wd = self.app.wd
+        # wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr/td[8]/a/img")[index].click()
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+
 
     def count(self):
         wd = self.app.wd
